@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="AVD Supermarket in Andimadam offers groceries, snacks, and daily essentials at affordable prices. Visit today!">
+<meta name="keywords" content="supermarket Andimadam, grocery shop Ariyalur, AVD Supermarket">
+<meta name="author" content="AVD Supermarket">
+<title>AVD Supermarket – Andimadam, Ariyalur</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --red:    #E63946;
+    --orange: #F4A261;
+    --yellow: #F7C948;
+    --green:  #2A9D5C;
+    --blue:   #1D7CC4;
+    --deep:   #0D1B2A;
+    --light:  #F9F7F3;
+    --white:  #FFFFFF;
+    --gray:   #6B7280;
+    --border: #E5E7EB;
+    --shadow: 0 4px 32px rgba(13,27,42,.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--deep);
+    overflow-x: hidden;
+  }
+
+  /* ─── UTILITY ───────────────────────────────── */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .badge {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 99px;
+    margin-bottom: 16px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: .95rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+  .btn-red   { background: var(--red);   color: #fff; }
+  .btn-green { background: var(--green); color: #fff; }
+  .btn-blue  { background: var(--blue);  color: #fff; }
+  .btn-outline { background: transparent; border: 2px solid var(--white); color: var(--white); }
+
+  /* ─── NAVBAR ────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    background: rgba(13,27,42,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -.01em;
+  }
+  .nav-logo span { color: var(--yellow); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-cta {
+    background: var(--green);
+    color: #fff;
+    padding: 9px 22px;
+    border-radius: 8px;
+    font-size: .88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: #22834f; }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 26px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: .3s;
+  }
+
+  /* ─── HERO ──────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    background: var(--deep);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 68px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 50%, rgba(244,162,97,.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(30,124,196,.20) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 50% 20%, rgba(247,201,72,.12) 0%, transparent 50%);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    padding: 80px 0;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .hero-eyebrow .chip {
+    background: rgba(247,201,72,.18);
+    border: 1px solid rgba(247,201,72,.35);
+    color: var(--yellow);
+    font-size: .78rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 99px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .hero-title .accent { color: var(--yellow); }
+  .hero-sub {
+    font-size: 1.08rem;
+    color: rgba(255,255,255,.68);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-visual { display: flex; justify-content: center; align-items: center; }
+  .hero-card-wrap { position: relative; width: 360px; max-width: 100%; }
+
+  /* Hero image box */
+  .hero-img-box {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,.15);
+    position: relative;
+  }
+  .hero-img-box img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
+  /* Hero placeholder (shown when no real image) */
+  .hero-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, rgba(244,162,97,.25), rgba(30,124,196,.25));
+    border-radius: 20px;
+    border: 2px dashed rgba(255,255,255,.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.5);
+    font-size: .88rem;
+    gap: 12px;
+  }
+  .hero-img-placeholder .icon { font-size: 2.8rem; }
+
+  .float-card {
+    position: absolute;
+    background: var(--white);
+    border-radius: 14px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.25);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .float-card .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .float-card-1 { bottom: -16px; left: -24px; }
+  .float-card-2 { top: -16px; right: -16px; }
+
+  .hero-stats { display: flex; gap: 36px; margin-top: 40px; flex-wrap: wrap; }
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--yellow);
+  }
+  .stat .lbl { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: 2px; }
+
+  /* ─── OFFERS BANNER ─────────────────────────── */
+  #offers {
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue));
+    background-size: 300% 100%;
+    animation: gradShift 6s ease infinite;
+    padding: 18px 0;
+    overflow: hidden;
+  }
+  @keyframes gradShift {
+    0%,100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+  .offers-track {
+    display: flex; gap: 40px;
+    animation: scroll-left 22s linear infinite;
+    width: max-content;
+  }
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .offer-item {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--white); font-weight: 700;
+    font-size: .9rem; letter-spacing: .03em; white-space: nowrap;
+  }
+  .offer-item .star { font-size: 1.1rem; }
+
+  /* ─── ABOUT ─────────────────────────────────── */
+  #about { padding: 100px 0; background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: center;
+  }
+  .about-badge { background: rgba(42,157,92,.12); color: var(--green); }
+  .about-title { margin-bottom: 20px; }
+  .about-body { font-size: 1.02rem; line-height: 1.8; color: var(--gray); margin-bottom: 32px; }
+  .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pillar {
+    background: var(--light);
+    border-radius: 14px; padding: 18px;
+    border-left: 4px solid transparent;
+    transition: transform .2s;
+  }
+  .pillar:hover { transform: translateY(-3px); }
+  .pillar:nth-child(1) { border-color: var(--green); }
+  .pillar:nth-child(2) { border-color: var(--blue); }
+  .pillar:nth-child(3) { border-color: var(--orange); }
+  .pillar:nth-child(4) { border-color: var(--red); }
+  .pillar .p-icon { font-size: 1.5rem; margin-bottom: 6px; }
+  .pillar .p-title { font-weight: 700; font-size: .92rem; }
+  .pillar .p-desc { font-size: .82rem; color: var(--gray); margin-top: 4px; }
+
+  .about-visual { position: relative; }
+
+  /* About image box — properly fitted */
+  .about-img-box {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    position: relative;
+  }
+  .about-img-box img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
+  /* About placeholder when no image */
+  .about-img-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #e8f5ff, #e8ffe8);
+    border: 2px dashed var(--border);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--gray); gap: 12px; font-size: .88rem;
+  }
+  .about-img-placeholder .icon { font-size: 3rem; }
+
+  .years-badge {
+    position: absolute; bottom: 24px; right: -20px;
+    background: var(--deep); color: var(--white);
+    border-radius: 16px; padding: 18px 22px;
+    text-align: center; box-shadow: var(--shadow);
+    z-index: 2;
+  }
+  .years-badge .y-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--yellow); line-height: 1;
+  }
+  .years-badge .y-lbl { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: 4px; }
+
+  /* ─── HIGHLIGHTS ─────────────────────────────── */
+  #highlights { padding: 90px 0; background: var(--deep); }
+  .highlights-header { text-align: center; margin-bottom: 56px; }
+  .highlights-header .section-title { color: var(--white); }
+  .highlights-header .section-title .accent { color: var(--yellow); }
+  .highlights-sub { color: rgba(255,255,255,.55); margin-top: 12px; font-size: 1rem; }
+  .hl-badge { background: rgba(247,201,72,.15); color: var(--yellow); }
+  .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .hl-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px; padding: 32px 28px;
+    transition: background .2s, transform .2s;
+    position: relative; overflow: hidden;
+  }
+  .hl-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 20px 20px 0 0;
+  }
+  .hl-card:nth-child(1)::before { background: var(--green); }
+  .hl-card:nth-child(2)::before { background: var(--blue); }
+  .hl-card:nth-child(3)::before { background: var(--orange); }
+  .hl-card:nth-child(4)::before { background: var(--red); }
+  .hl-card:nth-child(5)::before { background: var(--yellow); }
+  .hl-card:nth-child(6)::before { background: var(--green); }
+  .hl-card:hover { background: rgba(255,255,255,.09); transform: translateY(-4px); }
+  .hl-icon { font-size: 2.2rem; margin-bottom: 14px; }
+  .hl-title { font-weight: 700; font-size: 1.05rem; color: var(--white); margin-bottom: 8px; }
+  .hl-desc { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+  /* ─── GALLERY / PRODUCTS ─────────────────────── */
+  #gallery { padding: 90px 0; background: var(--light); }
+  .gallery-header { text-align: center; margin-bottom: 50px; }
+  .gallery-badge { background: rgba(230,57,70,.1); color: var(--red); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 2px 16px rgba(0,0,0,.06);
+    transition: transform .25s, box-shadow .25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+  .gallery-item:nth-child(1) { grid-row: span 2; }
+
+  /* ── THE KEY FIX: g-thumb is a fixed-height container ── */
+  .g-thumb {
+    position: relative;
+    width: 100%;
+    height: 200px;                          /* fixed height for all cards */
+    overflow: hidden;
+    background: linear-gradient(135deg, #fef3e2, #e8f5ff);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  /* First card (spans 2 rows) gets a taller thumb */
+  .gallery-item:nth-child(1) .g-thumb { height: 100%; min-height: 300px; flex: 1; }
+
+  .g-thumb img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform .4s ease;
+  }
+  .gallery-item:hover .g-thumb img { transform: scale(1.06); }
+
+  .g-info { padding: 16px; }
+  .g-name { font-weight: 700; font-size: .95rem; }
+  .g-tag  { font-size: .78rem; color: var(--gray); margin-top: 4px; }
+
+  /* ─── REVIEWS ────────────────────────────────── */
+  #reviews { padding: 90px 0; background: var(--white); }
+  .reviews-header { text-align: center; margin-bottom: 50px; }
+  .rev-badge { background: rgba(29,124,196,.1); color: var(--blue); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review-card {
+    background: var(--light);
+    border-radius: 18px; padding: 28px;
+    position: relative; border: 1px solid var(--border);
+    transition: box-shadow .2s;
+  }
+  .review-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+  .review-stars { color: var(--yellow); font-size: 1.1rem; margin-bottom: 12px; }
+  .review-text { font-size: .92rem; line-height: 1.7; color: #444; margin-bottom: 18px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: .9rem; color: #fff; flex-shrink: 0;
+  }
+  .author-name { font-weight: 700; font-size: .88rem; }
+  .author-type { font-size: .78rem; color: var(--gray); }
+  .quote-mark {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 3rem; color: var(--border);
+    font-family: 'Playfair Display', serif;
+    line-height: 1; pointer-events: none;
+  }
+
+  /* ─── CONTACT ────────────────────────────────── */
+  #contact { padding: 90px 0; background: var(--deep); }
+  .contact-header { text-align: center; margin-bottom: 56px; }
+  .contact-header .section-title { color: var(--white); }
+  .contact-badge { background: rgba(244,162,97,.15); color: var(--orange); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
+  .contact-info { display: flex; flex-direction: column; gap: 20px; }
+  .c-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 16px; padding: 20px 22px;
+    display: flex; align-items: flex-start; gap: 14px;
+    transition: background .2s;
+  }
+  .c-card:hover { background: rgba(255,255,255,.1); }
+  .c-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .c-label { font-size: .78rem; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
+  .c-value { font-weight: 600; color: var(--white); font-size: .95rem; }
+  .c-value a { color: inherit; text-decoration: none; }
+  .c-value a:hover { color: var(--yellow); }
+  .cta-buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+  .map-box {
+    border-radius: 20px; overflow: hidden;
+    border: 2px solid rgba(255,255,255,.1);
+    height: 420px;
+    background: rgba(255,255,255,.05);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,.35); font-size: .88rem;
+    flex-direction: column; gap: 10px;
+  }
+  .map-box iframe { width: 100%; height: 100%; border: none; display: block; }
+  .map-placeholder-icon { font-size: 2.5rem; }
+
+  /* ─── FOOTER ─────────────────────────────────── */
+  footer {
+    background: #060d14; color: rgba(255,255,255,.55);
+    text-align: center; padding: 32px 24px;
+    font-size: .85rem; border-top: 1px solid rgba(255,255,255,.06);
+  }
+  footer strong { color: var(--yellow); }
+
+  /* ─── FLOATING WHATSAPP ──────────────────────── */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 888;
+    width: 58px; height: 58px; background: #25D366;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(37,211,102,.45);
+    text-decoration: none;
+    animation: waPulse 2.5s ease-in-out infinite;
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  @keyframes waPulse {
+    0%,100% { box-shadow: 0 4px 24px rgba(37,211,102,.45); }
+    50%      { box-shadow: 0 4px 40px rgba(37,211,102,.75); }
+  }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+  /* ─── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .highlights-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:nth-child(1) { grid-row: span 1; }
+    .gallery-item:nth-child(1) .g-thumb { height: 200px; min-height: unset; flex: unset; }
+    .years-badge { right: 0; }
+    .about-pillars { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .highlights-grid, .reviews-grid, .gallery-grid { grid-template-columns: 1fr; }
+    .about-pillars { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; }
+    .hero-actions { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+
+  /* ─── ANIMATIONS ─────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">AVD <span>Supermarket</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#highlights">Why Us</a></li>
+      <li><a href="#gallery">Products</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/919894259594" target="_blank" class="nav-cta">💬 WhatsApp Us</a>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ MOBILE MENU ════════════════════════════════════ -->
+<div id="mobileMenu" style="display:none; position:fixed; top:68px; left:0; right:0; background:rgba(13,27,42,.97); z-index:998; padding:24px; border-bottom:1px solid rgba(255,255,255,.1);">
+  <ul style="list-style:none; display:flex; flex-direction:column; gap:18px;">
+    <li><a href="#about"      onclick="closeMenu()" style="color:#fff; text-decoration:none; font-size:1.05rem;">About</a></li>
+    <li><a href="#highlights" onclick="closeMenu()" style="color:#fff; text-decoration:none; font-size:1.05rem;">Why Us</a></li>
+    <li><a href="#gallery"    onclick="closeMenu()" style="color:#fff; text-decoration:none; font-size:1.05rem;">Products</a></li>
+    <li><a href="#reviews"    onclick="closeMenu()" style="color:#fff; text-decoration:none; font-size:1.05rem;">Reviews</a></li>
+    <li><a href="#contact"    onclick="closeMenu()" style="color:#fff; text-decoration:none; font-size:1.05rem;">Contact</a></li>
+    <li><a href="https://wa.me/919894259594" target="_blank" class="btn btn-green" style="width:100%; text-align:center; justify-content:center;">💬 WhatsApp Us</a></li>
+  </ul>
+</div>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content fade-in">
+        <div class="hero-eyebrow">
+          <span class="chip">⭐ Trusted Since 5+ Years</span>
+          <span class="chip">📍 Andimadam, Ariyalur</span>
+        </div>
+        <h1 class="hero-title">
+          Your <span class="accent">Neighbourhood</span><br>
+          Supermarket
+        </h1>
+        <p class="hero-sub">
+          AVD Supermarket brings you quality products at the most affordable prices. From daily essentials to branded goods — everything you need, right around the corner.
+        </p>
+        <div class="hero-actions">
+          <a href="tel:9894259594" class="btn btn-red">📞 Call Now</a>
+          <a href="https://wa.me/919894259594" target="_blank" class="btn btn-green">💬 WhatsApp Order</a>
+          <a href="#contact" class="btn btn-outline">📍 Get Directions</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="num">5+</div><div class="lbl">Years Trusted</div></div>
+          <div class="stat"><div class="num">1000+</div><div class="lbl">Products</div></div>
+          <div class="stat"><div class="num">100%</div><div class="lbl">Quality Assured</div></div>
+        </div>
+      </div>
+      <div class="hero-visual fade-in" style="transition-delay:.2s">
+        <div class="hero-card-wrap">
+          <div class="hero-img-box">
+            <img src="images/image1.jpeg" alt="AVD Supermarket"/>
+          </div>
+          <div class="float-card float-card-1">
+            <div class="dot" style="background:var(--green)"></div>
+            <span>Budget-Friendly Prices</span>
+          </div>
+          <div class="float-card float-card-2">
+            <div class="dot" style="background:var(--yellow)"></div>
+            <span>Open Every Day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OFFERS BANNER ════════════════════════════════════ -->
+<section id="offers">
+  <div class="offers-track">
+    <div class="offer-item"><span class="star">🎉</span> Fresh Stock Daily — Best Prices in Town!</div>
+    <div class="offer-item"><span class="star">💥</span> Weekend Special Offers — Up to 20% Off!</div>
+    <div class="offer-item"><span class="star">🛒</span> Buy More, Save More — Bulk Discounts Available!</div>
+    <div class="offer-item"><span class="star">⚡</span> Quick Service — No Long Waits!</div>
+    <div class="offer-item"><span class="star">📦</span> All Brands Under One Roof!</div>
+    <div class="offer-item"><span class="star">🎉</span> Fresh Stock Daily — Best Prices in Town!</div>
+    <div class="offer-item"><span class="star">💥</span> Weekend Special Offers — Up to 20% Off!</div>
+    <div class="offer-item"><span class="star">🛒</span> Buy More, Save More — Bulk Discounts Available!</div>
+    <div class="offer-item"><span class="star">⚡</span> Quick Service — No Long Waits!</div>
+    <div class="offer-item"><span class="star">📦</span> All Brands Under One Roof!</div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <span class="badge about-badge">About Us</span>
+        <h2 class="section-title about-title">More Than Just a <br>Supermarket</h2>
+        <p class="about-body">
+          AVD Supermarket has been serving the people of Andimadam, Ariyalur for over 5 years. Owned and managed by <strong>A. Arul Francis Xavier</strong>, we are committed to providing the finest quality products at prices that fit every budget — for students, working professionals, and families alike.
+        </p>
+        <p class="about-body" style="margin-top:-14px;">
+          We believe that quality shopping shouldn't be expensive. Our shelves are stocked fresh every day with groceries, household items, branded products, and daily essentials — so you never have to travel far to get what you need.
+        </p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="p-icon">🌿</div>
+            <div class="p-title">Fresh Every Day</div>
+            <div class="p-desc">Stocks replenished daily for freshness</div>
+          </div>
+          <div class="pillar">
+            <div class="p-icon">💰</div>
+            <div class="p-title">Affordable Pricing</div>
+            <div class="p-desc">Best value for every rupee spent</div>
+          </div>
+          <div class="pillar">
+            <div class="p-icon">🏆</div>
+            <div class="p-title">Trusted Quality</div>
+            <div class="p-desc">Only quality-assured products</div>
+          </div>
+          <div class="pillar">
+            <div class="p-icon">😊</div>
+            <div class="p-title">Friendly Service</div>
+            <div class="p-desc">We treat every customer like family</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-in" style="transition-delay:.2s">
+        <div class="about-img-box">
+          <img src="images/image2.jpeg" alt="AVD Supermarket Interior"/>
+        </div>
+        <div class="years-badge">
+          <div class="y-num">5+</div>
+          <div class="y-lbl">Years of Trust</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HIGHLIGHTS ════════════════════════════════════════ -->
+<section id="highlights">
+  <div class="container">
+    <div class="highlights-header fade-in">
+      <span class="badge hl-badge">Why Choose Us</span>
+      <h2 class="section-title">Why Families <span class="accent">Love</span> AVD</h2>
+      <p class="highlights-sub">We go beyond selling products — we build relationships with every customer.</p>
+    </div>
+    <div class="highlights-grid">
+      <div class="hl-card fade-in">
+        <div class="hl-icon">💸</div>
+        <div class="hl-title">Budget-Friendly Prices</div>
+        <div class="hl-desc">We keep our prices the lowest in the area so that every family — regardless of income — can afford quality products.</div>
+      </div>
+      <div class="hl-card fade-in" style="transition-delay:.1s">
+        <div class="hl-icon">✅</div>
+        <div class="hl-title">Quality You Can Trust</div>
+        <div class="hl-desc">All products are sourced from reliable suppliers and top-rated brands. No compromise on quality, ever.</div>
+      </div>
+      <div class="hl-card fade-in" style="transition-delay:.15s">
+        <div class="hl-icon">🗂️</div>
+        <div class="hl-title">Wide Variety</div>
+        <div class="hl-desc">Groceries, snacks, beverages, household items, stationery, and more — all available under one roof.</div>
+      </div>
+      <div class="hl-card fade-in" style="transition-delay:.2s">
+        <div class="hl-icon">📅</div>
+        <div class="hl-title">5+ Years of Experience</div>
+        <div class="hl-desc">With over half a decade of serving the community, we understand what our customers truly need.</div>
+      </div>
+      <div class="hl-card fade-in" style="transition-delay:.25s">
+        <div class="hl-icon">🤝</div>
+        <div class="hl-title">Community-First Approach</div>
+        <div class="hl-desc">We serve students, workers, and families with equal care, respect, and dedication.</div>
+      </div>
+      <div class="hl-card fade-in" style="transition-delay:.3s">
+        <div class="hl-icon">📦</div>
+        <div class="hl-title">Daily Fresh Stock</div>
+        <div class="hl-desc">Our inventory is refreshed every day to ensure you always get the freshest products available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY / PRODUCTS ════════════════════════════════ -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header fade-in">
+      <span class="badge gallery-badge">Our Products</span>
+      <h2 class="section-title">What We <span style="color:var(--red)">Offer</span></h2>
+      <p style="color:var(--gray); margin-top:12px;">A wide selection of daily essentials and branded goods.</p>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- Card 1: Daily Groceries (big, spans 2 rows) -->
+      <div class="gallery-item fade-in">
+        <div class="g-thumb">
+          <img src="images/image3.jpg" alt="Daily Groceries"/>
+        </div>
+        <div class="g-info">
+          <div class="g-name">Daily Groceries</div>
+          <div class="g-tag">Rice, Pulses, Oils, Spices & more</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Beverages -->
+      <div class="gallery-item fade-in" style="transition-delay:.1s">
+        <div class="g-thumb">
+          <img src="images/image4.jpg" alt="Beverages & Drinks"/>
+        </div>
+        <div class="g-info">
+          <div class="g-name">Beverages & Drinks</div>
+          <div class="g-tag">Cold drinks, Juices, Water & more</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Snacks -->
+      <div class="gallery-item fade-in" style="transition-delay:.15s">
+        <div class="g-thumb">
+          <img src="images/image5.jpg" alt="Snacks & Biscuits"/>
+        </div>
+        <div class="g-info">
+          <div class="g-name">Snacks & Biscuits</div>
+          <div class="g-tag">Chips, Biscuits, Chocolates & more</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Personal Care -->
+      <div class="gallery-item fade-in" style="transition-delay:.2s">
+        <div class="g-thumb">
+          <img src="images/image6.jpg" alt="Personal Care"/>
+        </div>
+        <div class="g-info">
+          <div class="g-name">Personal Care</div>
+          <div class="g-tag">Soaps, Shampoos, Creams & more</div>
+        </div>
+      </div>
+
+      <!-- Card 5: Household Items -->
+      <div class="gallery-item fade-in" style="transition-delay:.25s">
+        <div class="g-thumb">
+          <img src="images/image7.jpg" alt="Household Items"/>
+        </div>
+        <div class="g-info">
+          <div class="g-name">Household Items</div>
+          <div class="g-tag">Detergents, Cleaners & Utensils</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ════════════════════════════════════════════ -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header fade-in">
+      <span class="badge rev-badge">Customer Reviews</span>
+      <h2 class="section-title">What Our <span style="color:var(--blue)">Customers</span> Say</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">AVD Supermarket is my go-to shop! The prices are unbeatable and the staff is always helpful. Highly recommended for every household.</p>
+        <div class="review-author">
+          <div class="author-avatar" style="background:var(--green)">R</div>
+          <div>
+            <div class="author-name">Ravi Kumar</div>
+            <div class="author-type">Local Resident</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-in" style="transition-delay:.1s">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">As a student, I always look for affordable and quality products. AVD Supermarket never disappoints. Fresh stock every day and great service.</p>
+        <div class="review-author">
+          <div class="author-avatar" style="background:var(--blue)">P</div>
+          <div>
+            <div class="author-name">Priya S.</div>
+            <div class="author-type">Student</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-in" style="transition-delay:.2s">
+        <div class="quote-mark">"</div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">I've been shopping here for 3 years. The owner is very friendly and knows exactly what we need. Best supermarket in Andimadam!</p>
+        <div class="review-author">
+          <div class="author-avatar" style="background:var(--orange)">M</div>
+          <div>
+            <div class="author-name">Murugan A.</div>
+            <div class="author-type">Working Professional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-header fade-in">
+      <span class="badge contact-badge">Get In Touch</span>
+      <h2 class="section-title" style="color:var(--white)">Visit Us or <span style="color:var(--orange)">Reach Out</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="c-card">
+          <div class="c-icon" style="background:rgba(230,57,70,.2)">📞</div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-value"><a href="tel:9894259594">9894259594</a></div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon" style="background:rgba(37,211,102,.2)">💬</div>
+          <div>
+            <div class="c-label">WhatsApp</div>
+            <div class="c-value"><a href="https://wa.me/919894259594" target="_blank">+91 9894259594</a></div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon" style="background:rgba(244,162,97,.2)">📍</div>
+          <div>
+            <div class="c-label">Address</div>
+            <div class="c-value">AVD Supermarket, Andimadam, Ariyalur, Tamil Nadu</div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-icon" style="background:rgba(29,124,196,.2)">👤</div>
+          <div>
+            <div class="c-label">Owner</div>
+            <div class="c-value">A. Arul Francis Xavier</div>
+          </div>
+        </div>
+        <div class="cta-buttons">
+          <a href="tel:9894259594" class="btn btn-red">📞 Call Now</a>
+          <a href="https://wa.me/919894259594" target="_blank" class="btn btn-green">💬 WhatsApp Order</a>
+        </div>
+      </div>
+      <div class="map-box fade-in" style="transition-delay:.15s">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.0505447095725!2d79.37261037356052!3d11.331016348722445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bab2d55e76b94c7%3A0xc82a5cee9c819cad!2sAVD%20Supermarket!5e0!3m2!1sen!2sin!4v1776174376651!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer>
+  <p>© 2025 <strong>AVD Supermarket</strong> — Andimadam, Ariyalur. All rights reserved.</p>
+  <p style="margin-top:6px; font-size:.8rem; opacity:.6;">
+    Owned by A. Arul Francis Xavier &nbsp;|&nbsp;
+    Call: <a href="tel:9894259594" style="color:inherit;">9894259594</a> &nbsp;|&nbsp;
+    WhatsApp: <a href="https://wa.me/919894259594" style="color:inherit;">9894259594</a>
+  </p>
+</footer>
+
+<!-- ═══ FLOATING WHATSAPP ══════════════════════════════════ -->
+<a href="https://wa.me/919894259594" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  function toggleMenu(btn) {
+    const menu = document.getElementById('mobileMenu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').style.display = 'none';
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
